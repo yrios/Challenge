@@ -37,7 +37,7 @@ class Entry_model extends CI_Model {
                         . "WHERE e.user_id = se.user_id "
                         . "AND se.creationDate >= e.creationDate) <= 3 "
                     . "AND e.user_id = u.id "
-                    . "ORDER BY creationDate DESC");
+                    . "ORDER BY e.creationDate DESC");
         
         return $query->result();
     }

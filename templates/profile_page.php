@@ -7,7 +7,7 @@
             </ul>
             <ul class="nav navbar-nav pull-right">
                 <li><a href="#/main/{{currentuser.username}}" class="blog-nav-item" >{{currentuser.username}}</a></li>
-                <li><a href="#" class="blog-nav-item" >Logout</a></li>
+                <li><a href="" ng-click="logout()" class="blog-nav-item" >Logout</a></li>
             </ul>
         </nav>
     </div>
@@ -26,7 +26,7 @@
 
             <div class="blog-post" ng-repeat="entry in entries">
                 <h2 class="blog-post-title">{{entry.title}}</h2>
-                <p class="blog-post-meta">{{ entry.creationDate | date:'MMMM d, yyyy'  }} by<a href="#"> {{entry.username}}</a></p>
+                <p class="blog-post-meta">{{ entry.creationDate | date:'MMMM d, yyyy'  }} by<a href=""> {{entry.username}}</a></p>
 
                 <p>{{entry.content}}</p>
                 <button type="button" ng-click="editEntry(entry)" class="btn btn-link btn-lg" ng-hide="!entry.editable">Edit this post</button>
