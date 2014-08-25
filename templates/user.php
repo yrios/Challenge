@@ -50,7 +50,7 @@
             <h4>Tweets</h4>
             <hr>
             <div class="media" ng-repeat="tweet in tweets track by $index" ng-hide="tweet.hidden">
-                <a class="pull-left" href="#">
+                <a class="pull-left" href="">
                     <img class="media-object" src="{{tweet.profile_image_url}}" alt="">
                 </a>
                 <div class="media-body">
