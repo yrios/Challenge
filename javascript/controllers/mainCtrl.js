@@ -4,7 +4,7 @@ challengeApp.controller('mainCtrl', function ($scope, Modal, Services, $http, Pa
     $scope.numPerPage = 3;
     $scope.currentPage = 1;
     $scope.bigtotal = [];
-    $scope.user ={"username":"","password":""};
+    $scope.user = {"username":"","password":""};
     
     $scope.setPage = function(){
         if($scope.bigtotal){
@@ -70,6 +70,7 @@ challengeApp.controller('userBlogCtrl', function ($scope, Modal, Services, $http
     $scope.currentPage = 1;
     $scope.bigtotal = [];
     $scope.pageowner = $routeParams.username;
+    $scope.user = {"username":"","password":""};
     
     $scope.setPage = function(){
         if($scope.bigtotal){
@@ -88,17 +89,38 @@ challengeApp.controller('userBlogCtrl', function ($scope, Modal, Services, $http
             $scope.setPage();      
         });
     };
+
+    $scope.login = function (username,password) {
+        var modalContent = null;
+        var form = $.param({identity: username, password:password});
+        var init_url = base_url;
+
+        $http({method: 'POST', url: init_url+'/auth/login',data: form,headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).
+          success(function(data, status, headers, config) {
+                if(data.succes){
+                      location.reload();
+                }else{
+                      //alert(data.message);
+                      modalContent = { status: "danger", title: "Login", text: data.message };
+                      Modal.openAlert(modalContent);
+                }
+        });
+    };
     
     $scope.getProfile = function(){
         var response = Services.SendAjaxRequest("GET", "", "/profile/get_profile/"+$routeParams.username);
         response.then(function(data) {
             
             $scope.profile = data.body[0];
-            var response = Services.SendAjaxRequest("GET", "", "/profile/get_tweets/"+encodeURIComponent($scope.profile.twitterAccount)+"/"+$scope.profile.id);
-            response.then(function(data) {
-                $scope.tweets = data.body;
-                $scope.setPage();      
-            });
+            if($scope.profile == undefined){
+                $location.path("/main");
+            }else{
+                var response = Services.SendAjaxRequest("GET", "", "/profile/get_tweets/"+encodeURIComponent($scope.profile.twitterAccount)+"/"+$scope.profile.id);
+                response.then(function(data) {
+                    $scope.tweets = data.body;
+                    $scope.setPage();      
+                });
+            }  
         });
     };
     

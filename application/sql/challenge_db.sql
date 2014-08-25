@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2014 at 07:17 AM
+-- Generation Time: Aug 25, 2014 at 07:16 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `entries` (
   `user_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
 
 --
 -- Dumping data for table `entries`
@@ -61,7 +61,12 @@ INSERT INTO `entries` (`id`, `creationDate`, `title`, `content`, `user_id`) VALU
 (18, '2014-08-21 02:03:37', 'prueba', 'orem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, ', 4),
 (19, '2014-08-21 05:37:17', 'this is another test', 'Nulla pharetra eget nibh sed tempus. Aliquam commodo commodo urna ac feugiat. Etiam non consectetur odio. Cras luctus tristique elit sit amet volutpat. Nullam sit amet lacus lorem. Maecenas et tempor ipsum, sed semper odio. Praesent suscipit augue sit ame', 4),
 (20, '2014-08-21 06:11:44', 'this is a test', 'Nam vitae neque in est malesuada vulputate non sed lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec convallis nisi. Donec pellentesque suscipit dictum.', 1),
-(26, '2014-08-23 00:00:00', 'Ma mors :3', 'Te mao', 1);
+(26, '2014-08-23 00:00:00', 'Ma mors :3', 'Te mao', 1),
+(29, '2014-08-24 23:57:12', 'Only time', 'Good music :3!!!', 2),
+(30, '2014-08-25 00:03:01', 'Final Fantasy IX the best!', 'I love Final Fantasy IX Music, its so Good it is simply a master piece.', 2),
+(31, '2014-08-25 00:07:25', 'Im the Admin', 'Deal with it!!! Edited', 1),
+(32, '2014-08-25 00:07:25', 'Im the demond lord', 'Deal with it... Seriuosly.', 2),
+(42, '2014-08-25 04:01:16', 'My first entry', 'This is it.', 9);
 
 -- --------------------------------------------------------
 
@@ -102,7 +107,11 @@ CREATE TABLE IF NOT EXISTS `hidden_tweets` (
 --
 
 INSERT INTO `hidden_tweets` (`id`, `user_id`) VALUES
-('123123', 1);
+('503003539476463616', 2),
+('496503867782467584', 3),
+('496745096227074048', 3),
+('500824060620972032', 3),
+('500827222295715840', 3);
 
 -- --------------------------------------------------------
 
@@ -145,17 +154,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `company` varchar(100) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `about`, `twitterAccount`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'Administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', 'Only for revenge...', '@MetalGearSolidV', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1268889823, 1, 'Admin', 'istrator', 'Gault', '0'),
-(2, '127.0.0.1', 'Belkan', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', 'Who I am , is just who I want to be :)', '@Day_Loaiza', '', 'belkan@admin.com', '', NULL, NULL, NULL, 1408646271, 1408646271, 1, 'Belkan', 'Ace', 'Galm', '0'),
-(3, '127.0.0.1', 'Falken', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', 'Make it happen', '@Brigith_Loaiza', '', 'Falken@admin.com', '', NULL, NULL, NULL, 1408646562, 1408646562, 1, 'Falken', 'Adf', 'Gelb', '0'),
-(4, '127.0.0.1', 'HeartbreakOne', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', 'I Just miss them, because They are important to me.', '@YriosMerca', '', 'hbreak@admin.com', '', NULL, NULL, NULL, 1408646572, 1408646572, 1, 'Heart', 'Break', 'Crow', '0');
+(1, '127.0.0.1', 'Administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', 'Only for revenge...', '@MetalGearSolidV', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1408951781, 1, 'Admin', 'istrator', 'Gault', '0'),
+(2, '127.0.0.1', 'Belkan', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', 'Who I am , is just who I want to be :)', '@LeagueOfLegends', '', 'belkan@admin.com', '', NULL, NULL, NULL, 1408646271, 1408910268, 1, 'Belkan', 'Ace', 'Galm', '0'),
+(3, '127.0.0.1', 'Falken', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', 'Make it happen', '@Brigith_Loaiza', '', 'Falken@admin.com', '', NULL, NULL, NULL, 1408646562, 1408943655, 1, 'Falken', 'Adf', 'Gelb', '0'),
+(4, '127.0.0.1', 'HeartbreakOne', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', 'I Just miss them, because They are important to me.', '@YriosMerca', '', 'hbreak@admin.com', '', NULL, NULL, NULL, 1408646572, 1408903997, 1, 'Heart', 'Break', 'Crow', '0'),
+(9, '127.0.0.1', 'Soul', '$2y$08$oCX946yMYQyIqVcPBvDejeHK8llrumdwx1h0vUnmF9lQ5TGoqQ1Da', 'I hear your callin', '@yriosmerca', NULL, 'admin@admin.com', NULL, NULL, NULL, NULL, 1408957225, 1408957225, 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -171,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `users_groups` (
   UNIQUE KEY `uc_users_groups` (`user_id`,`group_id`),
   KEY `fk_users_groups_users1_idx` (`user_id`),
   KEY `fk_users_groups_groups1_idx` (`group_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `users_groups`
@@ -181,7 +191,8 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (1, 1, 1),
 (2, 2, 2),
 (3, 3, 2),
-(4, 4, 2);
+(4, 4, 2),
+(9, 9, 2);
 
 --
 -- Constraints for dumped tables

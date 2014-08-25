@@ -34,11 +34,15 @@ challengeApp.controller('profileCtrl', function ($scope, Modal, $routeParams, Se
         response.then(function(data) {
             
             $scope.profile = data.body[0];
-            var response = Services.SendAjaxRequest("GET", "", "/profile/get_tweets/"+encodeURIComponent($scope.profile.twitterAccount)+"/"+$scope.profile.id);
-            response.then(function(data) {
-                $scope.tweets = data.body;
-                $scope.setPage();      
-            });
+            if($scope.profile == undefined){
+                $location.path("/main");
+            }else{
+                var response = Services.SendAjaxRequest("GET", "", "/profile/get_tweets/"+encodeURIComponent($scope.profile.twitterAccount)+"/"+$scope.profile.id);
+                response.then(function(data) {
+                    $scope.tweets = data.body;
+                    $scope.setPage();      
+                });
+            }    
         });
     };
     

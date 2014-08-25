@@ -8,7 +8,7 @@
 <div class="blog-masthead">
     <div class="container">
         <nav class="collapse navbar-collapse">
-            <form class="navbar-form navbar-right" ng-submit="login()" role="form">
+            <form class="navbar-form navbar-right" ng-submit="login(user.username,user.password)" role="form">
                 <div class="form-group">
                     <input type="text" placeholder="username" ng-model="user.username" class="form-control">
                 </div>
@@ -21,7 +21,6 @@
         </nav>
     </div>
 </div>
-
 <div class="container">
 
     <div class="blog-header">

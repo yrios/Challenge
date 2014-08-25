@@ -48,6 +48,7 @@ class Entry_model extends CI_Model {
         $this->db->from('entries');
         $this->db->join('users', 'entries.user_id = users.id');
         $this->db->where('users.username', $username);
+        $this->db->order_by("creationDate", "desc"); 
         $query = $this->db->get();
         return $query->result();
     }
