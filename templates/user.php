@@ -42,7 +42,7 @@
           <div class="sidebar-module sidebar-module-inset">
             <h4>Tweets</h4>
             <hr>
-            <div class="media" ng-repeat="tweet in tweets">
+            <div class="media" ng-repeat="tweet in tweets" ng-hide="hidden()">
                 <a class="pull-left" href="#">
                     <img class="media-object" src="{{tweet.profile_image_url}}" alt="">
                 </a>
@@ -50,6 +50,7 @@
                     <h4 class="media-heading">{{tweet.name}}</h4>
                     {{tweet.text}}
                 </div>
+                <button type="button" ng-click="hideUnhide()" class="btn btn-defaul btn-sm" ng-hide="!tweet.isOwner">hide</button>
                 <hr>
             </div>
             

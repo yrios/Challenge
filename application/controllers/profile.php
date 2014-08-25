@@ -23,20 +23,22 @@ class Profile extends CI_Controller
     public function get_tweets($screen_name,$user_id)
     {
         $response = $this->Tweet_model->get_userTweets($screen_name);
+        //var_dump($response);
         $twitterList = array();
         if($this->ion_auth->logged_in())
         {
             $data = array();
-            if(isOwner($user_id))
+            if($this->isOwner($user_id))
             {
                 foreach ($response as $value) {
-                    if($this->Tweet_model->isHidden($value->id_str))
+                    //echo $value['id_str'];
+                    if($this->Tweet_model->isHidden($value['id_str']))
                     {
                         $data = array(
-                            'id_str'            => $value->id_str,
-                            'name'              => $value->user->name,
-                            'profile_image_url' => $value->user->profile_image_url,
-                            'text'              => $value->text,
+                            'id_str'            => $value['id_str'],
+                            'name'              => $value['name'],
+                            'profile_image_url' => $value['profile_image_url'],
+                            'text'              => $value['text'],
                             'hidden'            => true,
                             'isOwner'           => true
                         );
@@ -44,10 +46,10 @@ class Profile extends CI_Controller
                     else
                     {
                         $data = array(
-                            'id_str'            => $value->id_str,
-                            'name'              => $value->user->name,
-                            'profile_image_url' => $value->user->profile_image_url,
-                            'text'              => $value->text,
+                            'id_str'            => $value['id_str'],
+                            'name'              => $value['name'],
+                            'profile_image_url' => $value['profile_image_url'],
+                            'text'              => $value['text'],
                             'hidden'            => false,
                             'isOwner'           => true
                         );
@@ -58,13 +60,13 @@ class Profile extends CI_Controller
             else
             {
                 foreach ($response as $value) {
-                    if($this->Tweet_model->isHidden($value->id_str))
+                    if($this->Tweet_model->isHidden($value['id_str']))
                     {
                         $data = array(
-                            'id_str'            => $value->id_str,
-                            'name'              => $value->user->name,
-                            'profile_image_url' => $value->user->profile_image_url,
-                            'text'              => $value->text,
+                            'id_str'            => $value['id_str'],
+                            'name'              => $value['name'],
+                            'profile_image_url' => $value['profile_image_url'],
+                            'text'              => $value['text'],
                             'hidden'            => true,
                             'isOwner'           => false
                         );
@@ -72,10 +74,10 @@ class Profile extends CI_Controller
                     else
                     {
                         $data = array(
-                            'id_str'            => $value->id_str,
-                            'name'              => $value->user->name,
-                            'profile_image_url' => $value->user->profile_image_url,
-                            'text'              => $value->text,
+                            'id_str'            => $value['id_str'],
+                            'name'              => $value['name'],
+                            'profile_image_url' => $value['profile_image_url'],
+                            'text'              => $value['text'],
                             'hidden'            => false,
                             'isOwner'           => false
                         );
@@ -89,6 +91,19 @@ class Profile extends CI_Controller
         //echo json_encode($twitterList);
     }
     
+    public function hide()
+    {
+        $return = $this->Tweet_model->isHidden($this->input->post('title'),$this->input->post('title'));
+        echo $return;
+    }
+    
+    public function unhide()
+    {
+        $return = $this->Tweet_model->isHidden($this->input->post('title'),$this->input->post('title'));
+        echo $return;
+    }
+
+
     private function isOwner($user_id)
     {
         $user = $this->ion_auth->user()->row(); //Get Logged in user

@@ -32,7 +32,7 @@ challengeApp.controller('profileCtrl', function ($scope, Modal, $routeParams, Se
         response.then(function(data) {
             $scope.profile = data.body[0];
             
-            var response = Services.SendAjaxRequest("GET", "", "/profile/get_tweets/"+encodeURIComponent($scope.profile.twitterAccount));
+            var response = Services.SendAjaxRequest("GET", "", "/profile/get_tweets/"+encodeURIComponent($scope.profile.twitterAccount)+"/"+$scope.profile.id);
             response.then(function(data) {
                 $scope.tweets = data.body;
                 console.log($scope.tweets);
@@ -46,8 +46,45 @@ challengeApp.controller('profileCtrl', function ($scope, Modal, $routeParams, Se
         $location.path("/entry/edit");
     };
     
+    $scope.hidden = function(isOwner,isHidden){
+        if(isOwner){
+            return false;
+        }else if(isHidden){
+            return true;
+        }else{
+            return false;
+        }
+    };
+    
+    $scope.hideUnhide = function(twitter_id, user_id, operation){
+        if(operation == "hide"){
+            var response = Services.post(form,'/entry/edit_entry');
+            response.then(function(data) {
+                console.log(data);
+                if(data.body.succes){
+                    modalContent = { status: "success", title: "Entry", text: data.body.message };
+                    Modal.openRedirect(modalContent,"/main");
+                }else{
+                    modalContent = { status: "danger", title: "Entry", text: data.body.message };
+                    Modal.openAlert(modalContent);
+                }     
+            });
+        }else{
+            var response = Services.post(form,'/entry/edit_entry');
+            response.then(function(data) {
+                console.log(data);
+                if(data.body.succes){
+                    modalContent = { status: "success", title: "Entry", text: data.body.message };
+                    Modal.openRedirect(modalContent,"/main");
+                }else{
+                    modalContent = { status: "danger", title: "Entry", text: data.body.message };
+                    Modal.openAlert(modalContent);
+                }     
+            });
+        }
+    };
+    
     $scope.getProfile();
-    //$scope.getTweets();
     $scope.getEntriesByUsername();
 });
 
