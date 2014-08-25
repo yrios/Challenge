@@ -33,8 +33,8 @@ challengeApp.config(['$routeProvider',
         isSecured: true
       }).
       when('/main/:username', {
-        templateUrl: 'templates/edit_entry.php',
-        controller: 'entryCtrl',
+        templateUrl: 'templates/user.php',
+        controller: 'profileCtrl',
         isSecured: true
       }).
       otherwise({

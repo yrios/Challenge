@@ -13,7 +13,6 @@
         <!-- Bootstrap core CSS -->
 
         <link href="content/stylesheet/bootstrap.css" rel="stylesheet">
-        <link href="content/stylesheet/ladda-themeless.css" rel="stylesheet">
         <link href="content/stylesheet/loading-bar.css" rel="stylesheet">
 
         <!-- Custom styles for this site -->
@@ -49,14 +48,11 @@
         <script src="javascript/vendor/loading-bar.js"></script>
         <script src="javascript/vendor/angular-route.js"></script>
         <script src="javascript/vendor/ui-bootstrap-tpls-0.10.0.js"></script>
-        <script src="javascript/vendor/bootstrap-datepicker.js"></script>
-        <script src="javascript/vendor/locales/bootstrap-datepicker.es.js"></script>
-        <script src="javascript/vendor/spin.js"></script>
-        <script src="javascript/vendor/ladda.js"></script>
         <script src="javascript/app.js"></script>
         <script src="javascript/services/factories.js"></script>
         <script src="javascript/controllers/mainCtrl.js"></script>
         <script src="javascript/controllers/blogCtrl.js"></script>
         <script src="javascript/controllers/entryCtrl.js"></script>
+        <script src="javascript/controllers/profileCtrl.js"></script>
     </body>
 </html>

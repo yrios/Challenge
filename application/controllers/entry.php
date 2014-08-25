@@ -62,6 +62,56 @@ class Entry extends CI_Controller
             
     }
     
+    public function get_user_entries($username)
+    {
+        $response = $this->Entry_model->get_entriesByUserName($username);
+        //var_dump($response);
+        if($this->ion_auth->logged_in())
+        {
+            $data = array();
+            foreach ($response as $entry) 
+            {
+                if($this->isOwner($entry->user_id))
+                {
+                    
+                    $entry = array(
+                        'id'            =>$entry->id,
+                        'creationDate'  =>$entry->creationDate,
+                        'title'         =>$entry->title,
+                        'content'       =>$entry->content,
+                        'user_id'       =>$entry->user_id,
+                        'username'      =>$entry->username,
+                        'editable'      =>true
+                    );
+                    
+                    array_push($data, $entry);
+                }
+                else
+                {
+                    
+                    $entry = array(
+                        'id'            =>$entry->id,
+                        'creationDate'  =>$entry->creationDate,
+                        'title'         =>$entry->title,
+                        'content'       =>$entry->content,
+                        'user_id'       =>$entry->user_id,
+                        'username'      =>$entry->username,
+                        'editable'      =>false
+                    );
+                    
+                    array_push($data, $entry);
+                  
+                }
+            }
+            echo json_encode($data);
+        }
+        else
+        {
+            echo json_encode($response);
+        }
+            
+    }
+    
     public function save_entry()
     {
         $this->form_validation->set_rules('title', 'Title', 'required|max_length[100]');

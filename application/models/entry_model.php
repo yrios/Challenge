@@ -42,12 +42,12 @@ class Entry_model extends CI_Model {
         return $query->result();
     }
 
-    public function get_entriesByUserID($user_id)
+    public function get_entriesByUserName($username)
     {
-        $this->db->select('entries.id, entries.creationDate, entries.title, entries.content, entries.user_id, users.username');
+        $this->db->select('entries.id, DATE(entries.creationDate) creationDate, entries.title, entries.content, entries.user_id, users.username');
         $this->db->from('entries');
         $this->db->join('users', 'entries.user_id = users.id');
-        $this->db->where('entries.user_id', $user_id);
+        $this->db->where('users.username', $username);
         $query = $this->db->get();
         return $query->result();
     }
