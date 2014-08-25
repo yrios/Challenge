@@ -16,7 +16,7 @@
                   <input type="password" placeholder="Password" ng-model="user.password" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Sign in</button>
-                <a href="register" class="btn btn-primary">Register</a>
+                <a href="#/register" class="btn btn-primary">Register</a>
             </form>
         </nav>
     </div>
@@ -36,7 +36,7 @@
             
             <div class="blog-post" ng-repeat="entry in entries">
                 <h2 class="blog-post-title">{{entry.title}}</h2>
-                <p class="blog-post-meta">{{ entry.creationDate | date:'MMMM d, yyyy'  }} by<a href="#/main/{{entry.username}}"> {{entry.username}}</a></p>
+                <p class="blog-post-meta">{{ entry.creationDate | date:'MMMM d, yyyy'  }} by<a href="#/login/{{entry.username}}"> {{entry.username}}</a></p>
 
                 <p>{{entry.content}}</p>
                 <hr>

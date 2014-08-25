@@ -9,7 +9,7 @@
     <div class="container">
         <nav class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-              <li><a class="blog-nav-item" href="">Create New Entry</a></li>
+              <li><a class="blog-nav-item" href="#/entry/create">Create New Entry</a></li>
             </ul>
             <ul class="nav navbar-nav pull-right">
                 <li><a href="" class="blog-nav-item" >{{currentuser.username}}</a></li>

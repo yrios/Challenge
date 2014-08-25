@@ -1,23 +1,14 @@
-<!-- Angular Alert Template -->
-<script type="text/ng-template" id="myAlertModal.html">
-  <div class="modal-body">
-       <alert type="items.status" >{{items.text}}</alert>
-  </div>
-</script>
-<!-- Angular Alert Template -->
+
 <div class="blog-masthead">
     <div class="container">
         <nav class="collapse navbar-collapse">
-            <form class="navbar-form navbar-right" ng-submit="login()" role="form">
-                <div class="form-group">
-                    <input type="text" placeholder="username" ng-model="user.username" class="form-control">
-                </div>
-                <div class="form-group">
-                  <input type="password" placeholder="Password" ng-model="user.password" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary">Sign in</button>
-                <a href="register" class="btn btn-primary">Register</a>
-            </form>
+            <ul class="nav navbar-nav">
+              <li><a class="blog-nav-item" href="#/entry/create">Create New Entry</a></li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li><a href="#/main/{{currentuser.username}}" class="blog-nav-item" >{{currentuser.username}}</a></li>
+                <li><a href="#" class="blog-nav-item" >Logout</a></li>
+            </ul>
         </nav>
     </div>
 </div>
@@ -38,6 +29,7 @@
                 <p class="blog-post-meta">{{ entry.creationDate | date:'MMMM d, yyyy'  }} by<a href="#"> {{entry.username}}</a></p>
 
                 <p>{{entry.content}}</p>
+                <button type="button" ng-click="editEntry(entry)" class="btn btn-link btn-lg" ng-hide="!entry.editable">Edit this post</button>
                 <hr>
             </div><!-- /.blog-post -->
 
@@ -50,7 +42,7 @@
           <div class="sidebar-module sidebar-module-inset">
             <h4>Tweets</h4>
             <hr>
-            <div class="media" ng-repeat="tweet in tweets track by $index" ng-hide="tweet.hidden">
+            <div class="media" ng-repeat="tweet in tweets track by $index" ng-hide="hidden(tweet.isOwner,tweet.hidden)">
                 <a class="pull-left" href="#">
                     <img class="media-object" src="{{tweet.profile_image_url}}" alt="">
                 </a>
@@ -58,6 +50,7 @@
                     <h4 class="media-heading">{{tweet.name}}</h4>
                     {{tweet.text}}
                 </div>
+                <button type="button" ng-click="hideUnhide($index,tweet.action)" class="btn btn-defaul btn-sm" ng-hide="!tweet.isOwner">{{tweet.action}}</button>
                 <hr>
             </div>
             
@@ -70,5 +63,4 @@
     <p>Challenge <a href="">Blog Bootstrap</a></p>
     <p><a href="#">Back to top</a></p>
 </div>
-
 

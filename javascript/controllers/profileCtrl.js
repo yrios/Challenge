@@ -3,8 +3,10 @@ challengeApp.controller('profileCtrl', function ($scope, Modal, $routeParams, Se
     $scope.numPerPage = 3;
     $scope.currentPage = 1;
     $scope.bigtotal = [];
+    $scope.tweets = [];
     $scope.currentuser = currentuser;
     $scope.profile = "";
+    $scope.label = "";
     $scope.pageowner = $routeParams.username;
     
     $scope.user ={"username":"","password":""};
@@ -30,12 +32,11 @@ challengeApp.controller('profileCtrl', function ($scope, Modal, $routeParams, Se
     $scope.getProfile = function(){
         var response = Services.SendAjaxRequest("GET", "", "/profile/get_profile/"+$routeParams.username);
         response.then(function(data) {
-            $scope.profile = data.body[0];
             
+            $scope.profile = data.body[0];
             var response = Services.SendAjaxRequest("GET", "", "/profile/get_tweets/"+encodeURIComponent($scope.profile.twitterAccount)+"/"+$scope.profile.id);
             response.then(function(data) {
                 $scope.tweets = data.body;
-                console.log($scope.tweets);
                 $scope.setPage();      
             });
         });
@@ -56,31 +57,37 @@ challengeApp.controller('profileCtrl', function ($scope, Modal, $routeParams, Se
         }
     };
     
-    $scope.hideUnhide = function(twitter_id, user_id, operation){
+    $scope.hideUnhide = function(index, operation){
+
+        $scope.data = { id      : $scope.tweets[index].id_str,
+                        user_id : $scope.profile.id
+                    };
+                    
+        var form = $.param($scope.data);
+                        
         if(operation == "hide"){
-            var response = Services.post(form,'/entry/edit_entry');
+
+            var response = Services.post(form,'/profile/hide');
             response.then(function(data) {
                 console.log(data);
-                if(data.body.succes){
-                    modalContent = { status: "success", title: "Entry", text: data.body.message };
-                    Modal.openRedirect(modalContent,"/main");
-                }else{
-                    modalContent = { status: "danger", title: "Entry", text: data.body.message };
-                    Modal.openAlert(modalContent);
-                }     
-            });
+                $scope.tweets[index].action = "un-hide"
+                if(!$scope.$$phase) {
+                     //$digest or $apply
+                     $scope.$apply(); //Update local object
+                 }
+            });  
         }else{
-            var response = Services.post(form,'/entry/edit_entry');
+
+            var response = Services.post(form,'/profile/unhide');
             response.then(function(data) {
                 console.log(data);
-                if(data.body.succes){
-                    modalContent = { status: "success", title: "Entry", text: data.body.message };
-                    Modal.openRedirect(modalContent,"/main");
-                }else{
-                    modalContent = { status: "danger", title: "Entry", text: data.body.message };
-                    Modal.openAlert(modalContent);
-                }     
+                $scope.tweets[index].action = "hide"
+                if(!$scope.$$phase) {
+                    //$digest or $apply
+                    $scope.$apply(); //Update Local object
+                }
             });
+        
         }
     };
     

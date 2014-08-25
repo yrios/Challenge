@@ -29,13 +29,18 @@ challengeApp.config(['$routeProvider',
       }).
       when('/entry/edit', {
         templateUrl: 'templates/edit_entry.php',
-        controller: 'entryCtrl',
+        controller: 'editEntryCtrl',
         isSecured: true
       }).
       when('/main/:username', {
-        templateUrl: 'templates/user.php',
+        templateUrl: 'templates/profile_page.php',
         controller: 'profileCtrl',
         isSecured: true
+      }).
+      when('/login/:username', {
+        templateUrl: 'templates/user.php',
+        controller: 'userBlogCtrl',
+        isSecured: false
       }).
       otherwise({
         redirectTo: '/login'
@@ -45,7 +50,7 @@ challengeApp.config(['$routeProvider',
         $rootScope.$on( "$routeChangeStart", function(event, next, current) {
           if(next.isSecured && !UserSession.isLogged()){
             $location.path("/login");
-          }else if(next.originalPath == "/login" && UserSession.isLogged()){
+          }else if((next.originalPath == "/login" || next.originalPath == "/login/:username") && UserSession.isLogged()){
                 $location.path("/main")
           }
         })         

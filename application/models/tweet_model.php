@@ -57,10 +57,12 @@ class Tweet_model extends CI_Model {
     public function isHidden($tweet_id)
     {
         $this->db->select('*');
-        $this->db->from('entries');
+        $this->db->from('hidden_tweets');
         $this->db->where('id', $tweet_id);
+        $query = $this->db->get();
         
-        if($this->db->count_all_results() > 1)
+        
+        if($query->num_rows() >= 1)
         {
             return true;
         }else

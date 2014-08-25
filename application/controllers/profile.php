@@ -40,7 +40,8 @@ class Profile extends CI_Controller
                             'profile_image_url' => $value['profile_image_url'],
                             'text'              => $value['text'],
                             'hidden'            => true,
-                            'isOwner'           => true
+                            'isOwner'           => true,
+                            'action'           => 'un-hide'
                         );
                     }
                     else
@@ -51,7 +52,8 @@ class Profile extends CI_Controller
                             'profile_image_url' => $value['profile_image_url'],
                             'text'              => $value['text'],
                             'hidden'            => false,
-                            'isOwner'           => true
+                            'isOwner'           => true,
+                            'action'           => 'hide'
                         );
                     }
                     array_push($twitterList, $data);   
@@ -68,7 +70,8 @@ class Profile extends CI_Controller
                             'profile_image_url' => $value['profile_image_url'],
                             'text'              => $value['text'],
                             'hidden'            => true,
-                            'isOwner'           => false
+                            'isOwner'           => false,
+                            'action'           => 'un-hide'
                         );
                     }
                     else
@@ -79,7 +82,8 @@ class Profile extends CI_Controller
                             'profile_image_url' => $value['profile_image_url'],
                             'text'              => $value['text'],
                             'hidden'            => false,
-                            'isOwner'           => false
+                            'isOwner'           => false,
+                            'action'           => 'hide'
                         );
                     }
                     array_push($twitterList, $data);   
@@ -87,19 +91,50 @@ class Profile extends CI_Controller
             }
             echo json_encode($twitterList);
         }
-        
+        else
+        {
+            $data = array();
+            foreach ($response as $value) {
+                    if($this->Tweet_model->isHidden($value['id_str']))
+                    {
+                        $data = array(
+                            'id_str'            => $value['id_str'],
+                            'name'              => $value['name'],
+                            'profile_image_url' => $value['profile_image_url'],
+                            'text'              => $value['text'],
+                            'hidden'            => true,
+                            'isOwner'           => false,
+                            'action'           => 'un-hide'
+                        );
+                    }
+                    else
+                    {
+                        $data = array(
+                            'id_str'            => $value['id_str'],
+                            'name'              => $value['name'],
+                            'profile_image_url' => $value['profile_image_url'],
+                            'text'              => $value['text'],
+                            'hidden'            => false,
+                            'isOwner'           => false,
+                            'action'           => 'hide'
+                        );
+                    }
+                    array_push($twitterList, $data);   
+                }
+                echo json_encode($twitterList);
+        }
         //echo json_encode($twitterList);
     }
     
     public function hide()
     {
-        $return = $this->Tweet_model->isHidden($this->input->post('title'),$this->input->post('title'));
+        $return = $this->Tweet_model->save_tweet($this->input->post('id'),$this->input->post('user_id'));
         echo $return;
     }
     
     public function unhide()
     {
-        $return = $this->Tweet_model->isHidden($this->input->post('title'),$this->input->post('title'));
+        $return = $this->Tweet_model->remove_tweet($this->input->post('id'));
         echo $return;
     }
 
