@@ -1,0 +1,15 @@
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+.E{
+	background-color: #f2dede;
+}
+.D{
+	background-color: #faebcc;
+}
+.show-grid {
+margin-bottom: 15px;
+} 
