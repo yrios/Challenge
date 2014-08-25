@@ -54,5 +54,6 @@
         <script src="javascript/controllers/blogCtrl.js"></script>
         <script src="javascript/controllers/entryCtrl.js"></script>
         <script src="javascript/controllers/profileCtrl.js"></script>
+        <script src="javascript/controllers/userCtrl.js"></script>
     </body>
 </html>

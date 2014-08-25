@@ -860,7 +860,7 @@ class Ion_auth_model extends CI_Model
 	 * @return bool
 	 * @author Mathew
 	 **/
-	public function register($username, $password, $about, $email, $twitter_acount, $additional_data = array(), $groups = array())
+	public function register($username, $password, $email, $about, $twitter_acount, $additional_data = array(), $groups = array())
 	{
 		$this->trigger_events('pre_register');
 
@@ -897,15 +897,15 @@ class Ion_auth_model extends CI_Model
 
 		// Users table.
 		$data = array(
-		    'username'      => $username,
-		    'password'      => $password,
-                    'about'         => $about,
-                    'twitterAcount' => $twitter_acount,
-		    'email'         => $email,
-		    'ip_address'    => $ip_address,
-		    'created_on'    => time(),
-		    'last_login'    => time(),
-		    'active'        => ($manual_activation === false ? 1 : 0)
+		    'username'          => $username,
+		    'password'          => $password,
+                    'about'             => $about,
+                    'twitterAccount'    => $twitter_acount,
+		    'email'             => $email,
+		    'ip_address'        => $ip_address,
+		    'created_on'        => time(),
+		    'last_login'        => time(),
+		    'active'            => ($manual_activation === false ? 1 : 0)
 		);
 
 		if ($this->store_salt)
