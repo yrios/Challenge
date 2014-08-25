@@ -14,8 +14,92 @@ class Profile extends CI_Controller
         $this->form_validation->set_error_delimiters('', '');
     }
     
-    public function get_profile()
+    public function get_profile($username)
     {
+        $response = $this->ion_auth->profile($username);
+        echo json_encode($response);
+    }
+    
+    public function get_tweets($screen_name,$user_id)
+    {
+        $response = $this->Tweet_model->get_userTweets($screen_name);
+        $twitterList = array();
+        if($this->ion_auth->logged_in())
+        {
+            $data = array();
+            if(isOwner($user_id))
+            {
+                foreach ($response as $value) {
+                    if($this->Tweet_model->isHidden($value->id_str))
+                    {
+                        $data = array(
+                            'id_str'            => $value->id_str,
+                            'name'              => $value->user->name,
+                            'profile_image_url' => $value->user->profile_image_url,
+                            'text'              => $value->text,
+                            'hidden'            => true,
+                            'isOwner'           => true
+                        );
+                    }
+                    else
+                    {
+                        $data = array(
+                            'id_str'            => $value->id_str,
+                            'name'              => $value->user->name,
+                            'profile_image_url' => $value->user->profile_image_url,
+                            'text'              => $value->text,
+                            'hidden'            => false,
+                            'isOwner'           => true
+                        );
+                    }
+                    array_push($twitterList, $data);   
+                }
+            }
+            else
+            {
+                foreach ($response as $value) {
+                    if($this->Tweet_model->isHidden($value->id_str))
+                    {
+                        $data = array(
+                            'id_str'            => $value->id_str,
+                            'name'              => $value->user->name,
+                            'profile_image_url' => $value->user->profile_image_url,
+                            'text'              => $value->text,
+                            'hidden'            => true,
+                            'isOwner'           => false
+                        );
+                    }
+                    else
+                    {
+                        $data = array(
+                            'id_str'            => $value->id_str,
+                            'name'              => $value->user->name,
+                            'profile_image_url' => $value->user->profile_image_url,
+                            'text'              => $value->text,
+                            'hidden'            => false,
+                            'isOwner'           => false
+                        );
+                    }
+                    array_push($twitterList, $data);   
+                } 
+            }
+            echo json_encode($twitterList);
+        }
+        
+        //echo json_encode($twitterList);
+    }
+    
+    private function isOwner($user_id)
+    {
+        $user = $this->ion_auth->user()->row(); //Get Logged in user
+        if($user->user_id == $user_id)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     
 }

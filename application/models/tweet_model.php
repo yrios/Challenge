@@ -13,15 +13,27 @@ class Tweet_model extends CI_Model {
         $settings = $this->config->item('twitter_oauth');
 
         $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
-        $getfield = '?screen_name='.$screen_name.'&count=10';
+        $getfield = '?screen_name='.$screen_name.'&count=5';
         $requestMethod = 'GET';
 
         $twitter = new TwitterAPIExchange($settings);
         $response = $twitter->setGetfield($getfield)
             ->buildOauth($url, $requestMethod)
             ->performRequest();
-
-        return $response;
+        
+        $tweets = json_decode($response);
+        
+        $data = array();
+        foreach ($tweets as $tweet) {
+            $tweetArray = array(
+                'id_str'            => $tweet->id_str,
+                'name'              => $tweet->user->name,
+                'profile_image_url' => $tweet->user->profile_image_url,
+                'text'              => $tweet->text
+            );
+            array_push($data, $tweetArray);
+        }
+        return $data;
     }
 
     public function save_tweet($tweet_id, $user_id)
@@ -40,6 +52,21 @@ class Tweet_model extends CI_Model {
     public function remove_tweet($tweet_id)
     {
         return $this->db->delete('hidden_tweets', array('id' => $tweet_id)); 
+    }
+    
+    public function isHidden($tweet_id)
+    {
+        $this->db->select('*');
+        $this->db->from('entries');
+        $this->db->where('id', $tweet_id);
+        
+        if($this->db->count_all_results() > 1)
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
     }
         
 }

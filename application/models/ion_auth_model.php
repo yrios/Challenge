@@ -1367,8 +1367,18 @@ class Ion_auth_model extends CI_Model
 
 		return $this;
 	}
+        
+        public function profile($username)
+        {
+            $this->db->select('id, username, twitterAccount, about');
+            $this->db->from('users');
+            $this->db->where('username', $username);
+            
+            $query = $this->db->get();
+            return $query->result();
+        }
 
-	/**
+        /**
 	 * get_users_groups
 	 *
 	 * @return array

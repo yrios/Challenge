@@ -96,8 +96,9 @@ class Auth extends CI_Controller {
 
                 echo json_encode($this->data);
 	}
+        
 
-	//change password
+        //change password
 	function change_password()
 	{
 		$this->form_validation->set_rules('old', $this->lang->line('change_password_validation_old_password_label'), 'required');

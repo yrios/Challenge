@@ -6,7 +6,7 @@
               <li><a class="blog-nav-item" href="#">Create New Entry</a></li>
             </ul>
             <ul class="nav navbar-nav pull-right">
-                <li><a href="" class="blog-nav-item" >User</a></li>
+                <li><a href="#/main/{{currentuser.username}}" class="blog-nav-item" >{{currentuser.username}}</a></li>
                 <li><a href="#" class="blog-nav-item" >Logout</a></li>
             </ul>
         </nav>
@@ -16,8 +16,8 @@
 <div class="container">
 
     <div class="blog-header">
-      <h1 class="blog-title">{{pageowner}}'s Blog</h1>
-      <p class="lead blog-description">Kept you wating, huh!?.</p>
+      <h1 class="blog-title">{{profile.username}}'s Blog</h1>
+      <p class="lead blog-description">{{profile.about}}</p>
     </div>
 
     <div class="row">
@@ -42,36 +42,17 @@
           <div class="sidebar-module sidebar-module-inset">
             <h4>Tweets</h4>
             <hr>
-            <div class="media">
-              <a class="pull-left" href="#">
-                <img class="media-object" src="http://pbs.twimg.com/profile_images/378800000511897260/cc276ac0415b03569c7f9c7b48527db2_normal.jpeg" alt="">
-              </a>
-              <div class="media-body">
-                <h4 class="media-heading">Media heading</h4>
-                Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-              </div>
+            <div class="media" ng-repeat="tweet in tweets">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="{{tweet.profile_image_url}}" alt="">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">{{tweet.name}}</h4>
+                    {{tweet.text}}
+                </div>
+                <hr>
             </div>
-            <hr>
-            <div class="media">
-              <a class="pull-left" href="#">
-                <img class="media-object" src="http://pbs.twimg.com/profile_images/378800000511897260/cc276ac0415b03569c7f9c7b48527db2_normal.jpeg" alt="">
-              </a>
-              <div class="media-body">
-                <h4 class="media-heading">Media heading</h4>
-                Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-              </div>
-            </div>
-            <hr>
-            <div class="media">
-              <a class="pull-left" href="#">
-                <img class="media-object" src="http://pbs.twimg.com/profile_images/378800000511897260/cc276ac0415b03569c7f9c7b48527db2_normal.jpeg" alt="">
-              </a>
-              <div class="media-body">
-                <h4 class="media-heading">Media heading</h4>
-                Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-              </div>
-            </div>
-            <hr>
+            
           </div>
         </div><!-- /.blog-sidebar -->
     </div><!-- /.row -->

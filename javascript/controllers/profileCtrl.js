@@ -3,6 +3,8 @@ challengeApp.controller('profileCtrl', function ($scope, Modal, $routeParams, Se
     $scope.numPerPage = 3;
     $scope.currentPage = 1;
     $scope.bigtotal = [];
+    $scope.currentuser = currentuser;
+    $scope.profile = "";
     $scope.pageowner = $routeParams.username;
     
     $scope.user ={"username":"","password":""};
@@ -25,11 +27,27 @@ challengeApp.controller('profileCtrl', function ($scope, Modal, $routeParams, Se
         });
     };
     
+    $scope.getProfile = function(){
+        var response = Services.SendAjaxRequest("GET", "", "/profile/get_profile/"+$routeParams.username);
+        response.then(function(data) {
+            $scope.profile = data.body[0];
+            
+            var response = Services.SendAjaxRequest("GET", "", "/profile/get_tweets/"+encodeURIComponent($scope.profile.twitterAccount));
+            response.then(function(data) {
+                $scope.tweets = data.body;
+                console.log($scope.tweets);
+                $scope.setPage();      
+            });
+        });
+    };
+    
     $scope.editEntry = function(entry){
         SessionStorage.save("entry", entry);
         $location.path("/entry/edit");
     };
     
+    $scope.getProfile();
+    //$scope.getTweets();
     $scope.getEntriesByUsername();
 });
 
