@@ -1,0 +1,37 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<div id="gallery1"></div>
+		<div id="gallery2"></div>
+		<div id="gallery3"></div>
+	</body>
+	<script type="text/javascript" src="js/gallery.js"></script>
+	<script type="text/javascript">
+
+
+		var mode = "gallery"; // Mode
+		//Data of images
+		var data = [{src:"img/img1.jpg",desc:"desc2"},
+					{src:"img/img2.jpg",desc:"desc2"}];
+		var gallery1 = new Gallery('gallery1', data, mode);
+
+		var mode2 = "single"; // Mode
+		//Data of images			
+		var data2 = [{src:"img/img3.jpg",desc:"desc3"},
+					{src:"img/img4.jpg",desc:"desc4"},
+					{src:"img/img5.jpg",desc:"desc5"},
+					{src:"img/img6.jpg",desc:"desc6"}];
+		var gallery2 = new Gallery('gallery2', data2, mode2);
+
+		var mode3 = "single"; // Mode
+		//Data of images			
+		var data3 = [{src:"img/img5.jpg",desc:"desc5"},
+					{src:"img/img6.jpg",desc:"desc6"}];
+		var gallery3 = new Gallery('gallery3', data3, mode3);
+		gallery1.init();
+		gallery2.init();
+		gallery3.init();
+
+	</script>
+</html>

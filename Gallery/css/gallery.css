@@ -9,29 +9,23 @@
 	margin: 0 auto;
 	position: absolute;
 	white-space: nowrap
+
 }
 
-.scrollable-tumbnail > div
+.thumnail-img
 {
-
-    display: inline-block;
-    border: solid 1px #000;
-    max-width: 100px;
-	max-height: 70px;
-}
-
-.scrollable-tumbnail > div > img
-{
-	width: 100%;
+	width: 100px;
+	height: 70px;
+	position: relative;
 }
 
 .main-slide
 {
 	max-width:100%;
-    max-height:80%;
+    max-height:100%;
 }
 
-#gallery
+.wrapper
 {
     width: 600px;
     margin: 0 auto;
