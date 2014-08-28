@@ -6,9 +6,9 @@
 */
 function Gallery (gallery,_data,_mode) {
 	this.gallery = document.getElementById(gallery);
-	this.data = _data;  // data field is an img array that looks like this [{src:"imgsrc",desc:"img desc"},{src:"imgsrc",desc:"img desc"}]
-	this.mode = _mode;  //Specify the mode of the Widget (gallery/single);
-	this.currentImg = 0;
+	this.data = _data;  	// data field is an img array that looks like this [{src:"imgsrc",desc:"img desc"},{src:"imgsrc",desc:"img desc"}]
+	this.mode = _mode;  	//Specify the mode of the Widget ("gallery"/"single");
+	this.currentImg = 0;	//First image displayed
 	this.selected = null;
 	this.numberSlides = 0;
 	this.navslide = null;
@@ -33,7 +33,7 @@ Gallery.prototype = {
 
 
 	/*
-	* Function slide: this function controls the slide of the widget itself
+	* Function slide: this function controls the slide of the widget in single mode
 	*/
 	slide : function(){
 		this.numberSlides = this.data.length;
@@ -41,6 +41,9 @@ Gallery.prototype = {
 		this.display();
 	},
 
+	/*
+	* Function select: this function controls the selection of the widget in gallery mode
+	*/
 	select: function(x){
 		this.currentImg = x;
 		this.display();

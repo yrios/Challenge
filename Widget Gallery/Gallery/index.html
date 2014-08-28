@@ -9,15 +9,20 @@
 			<h1>Thumbnail mode</h1>
 			<div id="gallery1"></div>
 		</div>
-		
+
 		<div class="wrapper">
-			<h1>Single mode</h1>
+			<h1>Another Thumbnail mode</h1>
 			<div id="gallery2"></div>
 		</div>
 		
 		<div class="wrapper">
-			<h1>Another Single mode</h1>
+			<h1>Single mode</h1>
 			<div id="gallery3"></div>
+		</div>
+		
+		<div class="wrapper">
+			<h1>Another Single mode</h1>
+			<div id="gallery4"></div>
 		</div>
 	</body>
 	<script type="text/javascript" src="js/gallery.js"></script>
@@ -38,22 +43,33 @@
 					{src:"img/img10.jpg",desc:"desc10"}];
 		var gallery1 = new Gallery('gallery1', data, mode);
 
-		var mode2 = "single"; // Mode
-		//Data of images			
-		var data2 = [{src:"img/img3.jpg",desc:"desc3"},
-					{src:"img/img4.jpg",desc:"desc4"},
-					{src:"img/img5.jpg",desc:"desc5"},
-					{src:"img/img6.jpg",desc:"desc6"}];
+		var mode2 = "gallery"; // Mode
+		//Data of images
+		var data2 = [{src:"img/img7.jpg",desc:"desc7"},
+					{src:"img/img8.jpg",desc:"desc8"},
+					{src:"img/img9.jpg",desc:"desc9"},
+					{src:"img/img10.jpg",desc:"desc10"}];
 		var gallery2 = new Gallery('gallery2', data2, mode2);
 
 		var mode3 = "single"; // Mode
 		//Data of images			
-		var data3 = [{src:"img/img5.jpg",desc:"desc5"},
+		var data3 = [{src:"img/img3.jpg",desc:"desc3"},
+					{src:"img/img4.jpg",desc:"desc4"},
+					{src:"img/img5.jpg",desc:"desc5"},
 					{src:"img/img6.jpg",desc:"desc6"}];
 		var gallery3 = new Gallery('gallery3', data3, mode3);
+
+		var mode4 = "single"; // Mode
+		//Data of images			
+		var data4 = [{src:"img/img5.jpg",desc:"desc5"},
+					{src:"img/img6.jpg",desc:"desc6"}];
+		var gallery4 = new Gallery('gallery4', data4, mode4);
+
+		//---init gallery.
 		gallery1.init();
 		gallery2.init();
 		gallery3.init();
+		gallery4.init();
 
 	</script>
 </html>
