@@ -1,0 +1,32 @@
+Para user el Gallery Widget, se debe seguir los siguientes pasos.
+
+
+1) agregar la refrencia a gallery.css
+
+<link rel="stylesheet" type="text/css" href="css/gallery.css">
+
+2) Agregar la referencia a gallery.js
+
+<script type="text/javascript" src="js/gallery.js"></script>
+
+3) Crear una instancia del Widget, recive 3 parametros;
+  
+  -contenedor Elemento html donde se desea colocar el widget(<div id="gallery"></div>)	
+ 
+  -Datos (array de imagenes) array
+	var data = [{src:"img/img1.jpg",desc:"desc1"},
+	            {src:"img/img2.jpg",desc:"desc2"},
+		    {src:"img/img3.jpg",desc:"desc3"},
+		    {src:"img/img4.jpg",desc:"desc4"}];
+
+  -modo (gallery/single) string
+  
+
+
+ var gallery = new Gallery(contenedor,data,modo)
+
+ 4) iniciar
+
+  gallery.init();
+
+
