@@ -19,6 +19,7 @@ function Gallery (gallery,_data,_mode) {
 * 
 */
 Gallery.prototype = {
+
 	init : function(){
 		if(this.mode == "single"){
 			this.renderSingle();
@@ -30,7 +31,6 @@ Gallery.prototype = {
 			console.log("invalid mode");
 		}
 	},
-
 
 	/*
 	* Function slide: this function controls the slide of the widget in single mode
@@ -59,8 +59,6 @@ Gallery.prototype = {
 		this.navslide.addEventListener('click',function(){
 			self.slide();
 		});
-
-		
 	},
 
 	/*
