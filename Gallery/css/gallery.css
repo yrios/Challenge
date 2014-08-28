@@ -1,3 +1,18 @@
+body {
+  padding-top: 50px;
+}
+
+h1
+{
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.starter-template 
+{
+  padding: 40px 15px;
+  text-align: center;
+}
+
 
 .scrollable-tumbnail
 {
@@ -9,26 +24,34 @@
 	margin: 0 auto;
 	position: absolute;
 	white-space: nowrap
-
 }
 
-.thumnail-img
+.scrollable-tumbnail > div
 {
-	width: 100px;
-	height: 70px;
-	position: relative;
+
+    display: inline-block;
+    border: solid 1px #000;
+    max-width: 100px;
+	max-height: 70px;
+}
+
+.scrollable-tumbnail > div > img
+{
+	width: 100%;
 }
 
 .main-slide
 {
 	max-width:100%;
-    max-height:100%;
+    max-height:80%;
 }
 
 .wrapper
 {
+	padding: 40px 15px;
     width: 600px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .slider{

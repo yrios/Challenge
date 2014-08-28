@@ -31,7 +31,7 @@
     max-height:80%;
 }
 
-#gallery
+.wrapper
 {
     width: 600px;
     margin: 0 auto;

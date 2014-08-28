@@ -1,10 +1,24 @@
 <html>
 	<head>
+		<title>My Slider</title>
+		<link rel="stylesheet" type="text/css" href="css/gallery.css">
 	</head>
 	<body>
-		<div id="gallery1"></div>
-		<div id="gallery2"></div>
-		<div id="gallery3"></div>
+
+		<div class="wrapper">
+			<h1>Thumbnail mode</h1>
+			<div id="gallery1"></div>
+		</div>
+		
+		<div class="wrapper">
+			<h1>Single mode</h1>
+			<div id="gallery2"></div>
+		</div>
+		
+		<div class="wrapper">
+			<h1>Another Single mode</h1>
+			<div id="gallery3"></div>
+		</div>
 	</body>
 	<script type="text/javascript" src="js/gallery.js"></script>
 	<script type="text/javascript">
@@ -12,8 +26,16 @@
 
 		var mode = "gallery"; // Mode
 		//Data of images
-		var data = [{src:"img/img1.jpg",desc:"desc2"},
-					{src:"img/img2.jpg",desc:"desc2"}];
+		var data = [{src:"img/img1.jpg",desc:"desc1"},
+					{src:"img/img2.jpg",desc:"desc2"},
+					{src:"img/img3.jpg",desc:"desc3"},
+					{src:"img/img4.jpg",desc:"desc4"},
+					{src:"img/img5.jpg",desc:"desc5"},
+					{src:"img/img6.jpg",desc:"desc6"},
+					{src:"img/img7.jpg",desc:"desc7"},
+					{src:"img/img8.jpg",desc:"desc8"},
+					{src:"img/img9.jpg",desc:"desc9"},
+					{src:"img/img10.jpg",desc:"desc10"}];
 		var gallery1 = new Gallery('gallery1', data, mode);
 
 		var mode2 = "single"; // Mode
