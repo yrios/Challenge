@@ -65,7 +65,7 @@ Gallery.prototype = {
 
 	/*
 	*Function navigate in gallery mode: this function add the event listener to the
-	* thumnails container, and calls "select" every time the user clicks on any of the thumbnails presented
+	* thumnails container, and calls "select" every time the user clicks on any of the thumbnails presented.
 	*/
 	navigationGallery: function(){
 		var self = this;
@@ -78,7 +78,7 @@ Gallery.prototype = {
 	},
 
 	/*
-	* Function render: this function renders all the elements on the specified id.
+	* Function renderSingle: this function renders all the elements on the specified id, in single mode.
 	*/
 	renderSingle: function(){
 		var div = document.createElement("div");
@@ -90,6 +90,9 @@ Gallery.prototype = {
 		this.gallery.appendChild(div); // set to the main gallery container
 	}, 
 
+	/*
+	* Function renderGallery: this function renders all the elements on the specified id, in gallery mode.
+	*/
 	renderGallery: function(){
 		//Slider div
 		var div = document.createElement("div");
@@ -118,7 +121,7 @@ Gallery.prototype = {
 		div.appendChild(img);
 		div.appendChild(divscrollable);
 
-		this.gallery.appendChild(div); // set to the main gallery container
+		this.gallery.appendChild(div); // set to the main gallery container.
 	},
 
 	/*
@@ -130,7 +133,7 @@ Gallery.prototype = {
 	},
 
 	/*
-	* Function Find: this function returns the main slide element
+	* Function Find: this function returns the main slide element.
 	*/
 	find:function(){
 		var div = this.gallery.children;
@@ -145,7 +148,7 @@ Gallery.prototype = {
 
 	/*
 	* Find the main img, this img will be used to changed the current
-	* image reference
+	* image reference.
 	*/
 	findImg:function(){
 		var div = this.find();
